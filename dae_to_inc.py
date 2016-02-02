@@ -1301,7 +1301,8 @@ def write_pov(filename, scene=None, obj=None, objname="default"):
             #     so this condition is always True, IMO -- mont29
 
             name_orig = "OB" + objname
-            dataname_orig = "DATA" + objname
+            dataname_orig = objname # To make it easier
+            #dataname_orig = "DATA" + objname
 
             name = string_strip_hyphen(bpy.path.clean_name(name_orig))
             dataname = string_strip_hyphen(bpy.path.clean_name(dataname_orig))
