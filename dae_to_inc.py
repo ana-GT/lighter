@@ -1403,12 +1403,9 @@ def write_pov(filename, scene=None, obj=None, objname="default"):
                 idx = 0
                 tabStr = tab * tabLevel
                 for uv, index in uniqueUVs.items():
-                    if linebreaksinlists:
-                        file.write(",\n")
-                        file.write(tabStr + "<%.6f, %.6f>" % uv)
-                    else:
-                        file.write(", ")
-                        file.write("<%.6f, %.6f>" % uv)
+                    file.write(",\n")
+                    file.write(tabStr + "<%.6f, %.6f>" % uv)
+                    
                     index[0] = idx
                     idx += 1
                 '''
@@ -2272,18 +2269,12 @@ def write_pov(filename, scene=None, obj=None, objname="default"):
                             uvs = uv.uv[0][:], uv.uv[1][:], uv.uv[2][:]
 
                         for i1, i2, i3 in indices:
-                            if linebreaksinlists:
-                                file.write(",\n")
-                                file.write(tabStr + "<%d,%d,%d>" % (
-                                         uniqueUVs[uvs[i1]][0],\
-                                         uniqueUVs[uvs[i2]][0],\
-                                         uniqueUVs[uvs[i3]][0]))
-                            else:
-                                file.write(", ")
-                                file.write("<%d,%d,%d>" % (
-                                         uniqueUVs[uvs[i1]][0],\
-                                         uniqueUVs[uvs[i2]][0],\
-                                         uniqueUVs[uvs[i3]][0]))
+                            file.write(",\n")
+                            file.write(tabStr + "<%d,%d,%d>" % (
+                                     uniqueUVs[uvs[i1]][0],\
+                                     uniqueUVs[uvs[i2]][0],\
+                                     uniqueUVs[uvs[i3]][0]))
+                          
 
                     file.write("\n")
                     tabWrite("}\n")
@@ -2376,8 +2367,8 @@ for obi in mScene.objects:
   if obi.type == 'MESH':
       mScene.objects.active = obi
       obi.select = True
-      print( 'EXPORTING MESH  ' + obi.name  )
+      #print( 'EXPORTING MESH  ' + obi.name  )
       povfilename = mesh_name + ".inc"
-      wavefrontfilename = mesh_name + ".obj"
-      bpy.ops.export_scene.obj(filepath=wavefrontfilename, use_selection=True)
+      #wavefrontfilename = mesh_name + ".obj"
+      #bpy.ops.export_scene.obj(filepath=wavefrontfilename, use_selection=True)
       write_pov( filename=povfilename, scene = mScene, obj = obi, objname = mesh_name )
